@@ -41,3 +41,11 @@ tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
         attributes["Main-Class"] = "in.sudhi.lib.MainKt"
     }
 }
+tasks.register<Zip>("zipDistribution") {
+    dependsOn("shadowJar")
+    archiveFileName.set("${project.name}.zip")
+    destinationDirectory.set(file("$buildDir/distributions"))
+
+    // Add the generated shadow JAR to the zip
+    from(tasks.named("shadowJar").get().outputs.files)
+}
