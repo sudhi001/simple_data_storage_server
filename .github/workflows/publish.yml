@@ -33,7 +33,7 @@ jobs:
           body: ${{ steps.release_notes.outputs.release_notes }}
           files: build/distributions/${{ github.event.repository.name }}.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN}}
 
       - name: Extract version
         id: get_version
